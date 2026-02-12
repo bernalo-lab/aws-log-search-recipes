@@ -1,44 +1,70 @@
 **AWS Log Search Recipes**
 
-Battle-tested CloudWatch Logs Insights queries used during real production incidents.
+Battle-tested AWS CloudWatch Logs Insights queries used during real production incidents.
 
-When systems fail, dashboards lag and alerts lie.
+When systems fail, dashboards lag and alerts mislead.
 Logs tell the truth — if you know how to ask.
 
-🔍 What This Is
+This repository shares a small selection of practical log search patterns designed for engineers working in production environments.
 
-A curated collection of practical log search patterns designed for:
+**What This Covers**
 
-Cloud Engineers
++ Failure cascades
++ Partial outages
++ Silent degradation
++ Authentication anomalies
++ Latency spikes
++ Incident reconstruction
 
-DevOps & SREs
+These are patterns refined from real operational troubleshooting scenarios.
 
-Platform teams
+No theory.
+No vendor fluff.
+Just patterns that work.
 
-On-call responders
+🟢 **Example Recipe**
+Find the First Error in a Failure Cascade -
 
-🟢 Free Example Recipe
-Find the First Error in a Failure Cascade
 fields @timestamp, @message, @logStream
 | filter @message like /error|exception|failed/i
 | sort @timestamp asc
 | limit 20
 
 
-Why it works:
-Incidents have a temporal shape. The earliest error often introduces invalid state that cascades downstream.
+**Why this works**
 
-📘 Full Handbook
+Incidents have a temporal shape. The earliest error often introduces invalid state that cascades downstream. Sorting chronologically surfaces the trigger instead of the noise.
 
-40 production-ready recipes
+**Who This Is For**
+
+Cloud Engineers
+
+DevOps & SREs
+
+Platform Engineers
+
+On-call responders
+
+If you've ever stared at CloudWatch thinking
+"I know the answer is in here somewhere" — this is for you.
+
+**Full Handbook**
+
+The complete collection contains:
+
+40 production-ready log search recipes
+
 Advanced incident reasoning patterns
-Operational heuristics
-Glossary & failure taxonomy
 
-👉 Available here:
-https://sogekey.gumroad.com/l/aws-log-search-recipes
+Operational heuristics (what most engineers miss)
 
-⚠️ License
+A practical failure-pattern glossary
 
-The full handbook is a paid product.
+Preview available here:
+
+👉 https://bernalo.gitbook.io/bernalo-docs/aws-log-search-recipes-free-preview/
+
+**License**
+
 This repository contains sample material only.
+The full handbook is a paid product.
